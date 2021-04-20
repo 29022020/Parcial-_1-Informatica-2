@@ -1,0 +1,32 @@
+int pindata=2;//Pin de entrada de datos
+int pinlatch=3;//Pin de segunda etapa de registros(salida)
+int pinclock=4;//Pin de primera entrada de registros (entrada)
+
+void escribirled(){
+   for (int x=0;x<16;x++){//Comprobar 16 leds
+    
+     digitalWrite(pindata,1);delay(100);
+     //
+     digitalWrite(pinclock,0);
+     digitalWrite(pinclock,1);
+     digitalWrite(pinclock,0);
+  	 //
+    digitalWrite(pinlatch,0);
+    digitalWrite(pinlatch,1);
+    digitalWrite(pinlatch,0);
+  }
+}
+void setup()
+{
+  pinMode(pindata, OUTPUT);
+  pinMode(pinlatch, OUTPUT);
+  pinMode(pinclock, OUTPUT);
+  
+  digitalWrite(pindata,0);
+  digitalWrite(pinlatch,0);
+  digitalWrite(pinclock,0);
+  escribirled();
+  }
+void loop()
+{ 
+}
