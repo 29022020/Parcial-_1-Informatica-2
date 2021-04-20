@@ -1,0 +1,182 @@
+//Apartir de este código hemos estado interactuando con el circuito presentado.
+
+const int SER=2;
+const int RCLK1=4;
+const int SRCLK1=6;
+const int RCLK2=8;
+const int SRCLK2=9;
+
+void encender(){
+  digitalWrite( SER, 1);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+
+  //delay(1000);
+  
+  
+}
+void apagar(){
+  
+  digitalWrite( SER, 0);
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  digitalWrite( SRCLK2, 0);
+  digitalWrite( SRCLK2, 1);
+  digitalWrite( SRCLK2, 0);
+  
+  digitalWrite( RCLK2, 0);
+  digitalWrite( RCLK2, 1);
+  digitalWrite( RCLK2, 0);
+  
+}
+
+void setup()
+{
+  pinMode(SER, OUTPUT);
+  pinMode(RCLK1, OUTPUT);
+  pinMode(SRCLK1, OUTPUT);
+  pinMode(RCLK2, OUTPUT);
+  pinMode(SRCLK2, OUTPUT);
+  
+  digitalWrite(SER, LOW);
+  digitalWrite(RCLK1, LOW);
+  digitalWrite(SRCLK1, LOW);
+  digitalWrite(RCLK2, LOW);
+  digitalWrite(SRCLK2, LOW);
+  
+  digitalWrite( SER, 1);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  /*for (int i=1; i!=9; i++){
+    
+   // encender();
+  digitalWrite( SRCLK2, 0);
+  digitalWrite( SRCLK2, 1);
+  digitalWrite( SRCLK2, 0);
+  }*/
+  digitalWrite( SRCLK2, 0);
+  digitalWrite( SRCLK2, 1);
+  digitalWrite( SRCLK2, 0);
+
+  
+  digitalWrite( RCLK2, 0);
+  digitalWrite( RCLK2, 1);
+  digitalWrite( RCLK2, 0);
+  delay(1000);
+ 
+  /*digitalWrite( SER, 1);
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  digitalWrite( SRCLK2, 0);
+  digitalWrite( SRCLK2, 1);
+  digitalWrite( SRCLK2, 0);
+  
+  digitalWrite( RCLK2, 0);
+  digitalWrite( RCLK2, 1);
+  digitalWrite( RCLK2, 0);
+  delay(10000);*/
+
+}
+
+void loop()
+{
+  
+  encender();
+  //delay(1000);
+//  apagar();
+   
+  /*digitalWrite( SER, 1);
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+  
+  digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);*/
+ 
+  
+}
