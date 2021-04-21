@@ -1,0 +1,141 @@
+const int SER=2;//Entrada de datos
+const int RCLK=4;//Reloj 1(salida)
+const int SRCLK=6;//Reloj 2(entrada)
+
+
+
+void encender(){
+
+    int tamanio=8;
+    int bit=0;
+    unsigned long int byte=0;
+    unsigned long int matriz[tamanio][tamanio];
+    //prueba con la mitad de la matriz
+    for (int i=0;i<tamanio;i++){//filas
+      Serial.print("Ingrese los datos: ");
+      while(Serial.available()==0){} 
+      	byte=Serial.parseInt();
+      Serial.println(byte);
+         for (int j=0;j<tamanio;j++){//columnas
+           bit=byte%10;
+           if (bit == 1){
+             digitalWrite( SER, 1);
+
+             digitalWrite( SRCLK, 0);
+ 			 digitalWrite( SRCLK, 1);
+ 			digitalWrite( SRCLK, 0);
+           }
+  		/*	digitalWrite( RCLK, 0);
+ 	 		digitalWrite( RCLK, 1);
+ 			 digitalWrite( RCLK, 0);
+          	 }*/
+           else if(bit==0){
+              digitalWrite( SER, 0);
+
+              digitalWrite( SRCLK, 0);
+ 			 digitalWrite( SRCLK, 1);
+ 			digitalWrite( SRCLK, 0);
+           }
+
+  		/*	digitalWrite( RCLK, 0);
+ 	 		digitalWrite( RCLK, 1);
+ 			 digitalWrite( RCLK, 0);
+          	 }*/
+
+
+
+                //cout<<bit<<": bit"<<endl;//comprobar uno a uno
+             matriz[i][j]=bit;
+             byte/=10;
+           }
+
+    }
+
+
+
+
+
+      digitalWrite( RCLK, 0);
+ 	  digitalWrite( RCLK, 1);
+ 	  digitalWrite( RCLK, 0);     	
+
+
+}
+
+void setup()
+{
+  pinMode(SER, OUTPUT);
+  pinMode(RCLK, OUTPUT);
+  pinMode(SRCLK, OUTPUT);
+  Serial.begin(9600);
+  
+  digitalWrite( SER, 0);
+  digitalWrite( RCLK, 0);
+  digitalWrite( SRCLK, 0);  
+  
+  //delay(1000);
+  for(int i=1; i<=65; i++){
+//    Serial.println("Inciando matriz de leds.");
+    if (i%2==0){
+    digitalWrite( SER, 0);
+
+    digitalWrite( SRCLK, 0);
+ 	digitalWrite( SRCLK, 1);
+ 	digitalWrite( SRCLK, 0);
+     Serial.println(i);
+     
+  /*digitalWrite( RCLK, 0);
+ 	digitalWrite( RCLK, 1);
+ 	digitalWrite( RCLK, 0);*/
+    }
+      else{
+     digitalWrite( SER, 1);
+        
+    digitalWrite( SRCLK, 0);
+ 	digitalWrite( SRCLK, 1);
+ 	digitalWrite( SRCLK, 0);
+    Serial.println(i);
+     
+ /*  digitalWrite( RCLK, 0);
+ 	digitalWrite( RCLK, 1);
+ 	digitalWrite( RCLK, 0);*/
+      
+      
+      
+      
+      
+      }
+    // Serial.println("Activacion");
+    if (i==65){
+    digitalWrite( RCLK, 0);
+ 	digitalWrite( RCLK, 1);
+ 	digitalWrite( RCLK, 0);
+    }
+    
+  
+   // 
+    }
+  
+  //  delay(500);
+  /*  Serial.println("Activacion");
+    digitalWrite( RCLK, 0);
+ 	digitalWrite( RCLK, 1);
+ 	digitalWrite( RCLK, 0);*/ 
+    
+//    delay(10000);
+    
+  
+
+}
+
+void loop()
+{
+  
+//  while(Serial.available()){
+    
+    
+  
+
+//  encender();
+
+}                                                                                                                           

@@ -1,0 +1,79 @@
+1, 1, 1, 1, 1, 1, 1, 1
+1, 1, 1, 1, 1, 1, 1, 1
+0, 0, 0, 0, 0, 1, 1, 1 
+0, 0, 0, 0, 0, 1, 1, 1
+1, 1, 1, 1, 1, 1, 1, 1 
+1, 1, 1, 0, 0, 0, 0, 0
+1, 1, 1, 0, 0, 0, 0, 0
+1, 1, 1, 1, 1, 1, 1, 1
+
+
+ //delay(1000);
+//  apagar();
+   
+  /*digitalWrite( SER, 1);
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+  
+  digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);
+    digitalWrite( SER, 0);
+  
+  digitalWrite( SRCLK1, 0);
+  digitalWrite( SRCLK1, 1);
+  digitalWrite( SRCLK1, 0);
+  
+  digitalWrite( RCLK1, 0);
+  digitalWrite( RCLK1, 1);
+  digitalWrite( RCLK1, 0);
+  
+  delay(1000);*/
