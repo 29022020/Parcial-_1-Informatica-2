@@ -4,8 +4,9 @@ const int SRCLK=6;//Reloj 1(entrada)
 
 void ingresardatos2(int matriz[][8][8], int n);
 void ingresardatos(int matriz[8][8]);
+void publik(void);
 
-void apagar(){
+void apagar(void){
   
  int tamanio=8;
 
@@ -28,7 +29,7 @@ void apagar(){
   
 }
 
-void verificacion(){
+void verificacion(void){
   int tamanio=8;
   for (int i=0;i<tamanio;i++){//filas
     for (int j=0;j<tamanio;j++){//columnas
@@ -67,7 +68,7 @@ for (int j=0;j<64;j++){//columnas
 
 
 }
-void imagen(){
+void imagen(void){
   int tamanio=8;
   int bit=0;
   unsigned long int byte=0;
@@ -158,7 +159,51 @@ void imagen1(int matriz[8][8]){
   digitalWrite( RCLK, 0);*/
 
 }
-void encender(){
+void imagen2(int matriz[][8][8], int n){
+  int tamanio=8;
+  int bit=0;
+  unsigned long int byte=0;
+  for (int i=0;i<tamanio;i++){//filas
+    
+    for (int j=0;j<tamanio;j++){//columnas
+     bit=matriz[n][i][j];
+      if (bit == 1){
+
+        digitalWrite( SER, 1);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+         digitalWrite( RCLK, 0);
+        digitalWrite( RCLK, 1);
+        digitalWrite( RCLK, 0);
+        
+
+      }
+      else if(bit==0){
+        digitalWrite( SER, 0);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+         digitalWrite( RCLK, 0);
+        digitalWrite( RCLK, 1);
+        digitalWrite( RCLK, 0);
+
+      }
+	//byte/=10;
+    }
+
+  }   	
+
+  /*digitalWrite( RCLK, 0);
+  digitalWrite( RCLK, 1);
+  digitalWrite( RCLK, 0);*/
+
+}
+void encender(void){
   
     int tamanio=8;
     int bit=0;
@@ -281,7 +326,7 @@ void setup()
              Serial.println( "INGRESA LOS PATRONES QUE DESEES Y EL INTERVALO PARA MOSTRARLOS");
              Serial.println( "--------------------------------------------------------------");
 
-            // publik();
+             publik();
 
 
              break;
@@ -399,5 +444,37 @@ void ingresardatos2(int matriz[][8][8], int n){
 
   }
 
+
+}
+void publik(void){
+
+  unsigned int N, n;
+
+  Serial.print("Ingrese el numero de patrones: ");
+  while(Serial.available()==0){}
+  N=Serial.parseInt();
+  Serial.println(N);
+  
+  Serial.print("Ingrese el tiempo en (segundos) entre un patron y otro: ");
+  while(Serial.available()==0){}
+  n=Serial.parseInt();
+  Serial.println(n);
+
+    int publik[N][8][8]={};
+
+    for(int i=0; i<N; i++){
+      Serial.print("Patron: ");
+      Serial.println(i+1);
+
+          ingresardatos2(publik, i);
+
+
+    }
+    for (int j=0; j<N; j++){
+        
+        imagen2(publik, j);
+        delay(n*1000);
+    }
+  apagar();
 
 }
