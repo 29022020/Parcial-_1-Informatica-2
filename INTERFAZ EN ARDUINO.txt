@@ -1,0 +1,68 @@
+bool band=true;
+
+    
+    Serial.println("-------------------------------------------------");
+    Serial.println("|      BIENVENIDO AL GRAFICADOR DE LEDS 8X8     |");
+
+         while(band){
+
+         Serial.println("-------------------------------------------------");
+         Serial.println("|                    MENU.                       |");
+         Serial.println("-------------------------------------------------");
+           
+         Serial.println("1. Verificar funcionamiento de leds. ");
+         Serial.println("2. Ingresar un patron para mostrarlo en la matriz. ");
+         Serial.println("3. Ingresar varios patrones para ser mostrado en distintos intervalos de tiempo que debe ingresar. ");
+         Serial.println("4. Salir del programa. ");
+
+
+         Serial.println("Ingresa una opcion: ");
+         
+           while(Serial.available()==0){}
+           N=Serial.parseInt();
+
+         switch (N) {
+
+         case 1:
+             Serial.println("-----------------------------------------------------");
+             Serial.println( "       VERIFICACION DE LA MATRIZ DE LEDS.");
+             Serial.println( "-----------------------------------------------------");
+
+             //imprimirleds(inicializar);
+             break;
+         case 2:
+             Serial.println( "-----------------------------------------------------");
+             Serial.println( "INGRESA TU PATRON PARA MOSTRARLO EN LA MATRIZ DE LEDS.");
+             Serial.println( "-----------------------------------------------------");
+            //  ingresardatos(matriz);
+             // imagen(matriz);
+
+
+             break;
+         case 3:
+             Serial.println( "--------------------------------------------------------------");
+             Serial.println( "INGRESA LOS PATRONES QUE DESEES Y EL INTERVALO PARA MOSTRARLOS");
+             Serial.println( "--------------------------------------------------------------");
+
+            // publik();
+
+
+             break;
+
+         case 4:
+             Serial.println( "-------------------------------------------------");
+             Serial.println( "       GRACIAS POR USAR NUESTRO SERVICIO.");
+             Serial.println( "-------------------------------------------------");
+
+
+            band =false;
+             break;
+         default:
+             Serial.println( "-------------------------------------------------");
+             Serial.println( "                 DATOS INVALIDOS");
+             Serial.println( "-------------------------------------------------");
+
+
+
+     }
+     }
