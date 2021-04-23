@@ -1,0 +1,431 @@
+//----------------------------------------
+//Puertos digitales a usar.
+//----------------------------------------
+
+const int SER=2;//Entrada de datos
+const int RCLK=4;//Reloj 2(salida)
+const int SRCLK=6;//Reloj 1(entrada)
+//----------------------------------------
+//
+//----------------------------------------
+
+
+//----------------------------------------
+//Prototipo de las funciones implementadas.
+//----------------------------------------
+
+void publik(void);
+void apagar(void);
+void ingresardatos(int matriz[8][8]);
+void ingresardatos2(int matriz[][8][8], int n);
+void verificacion(void);
+void imagen1(int matriz[8][8]);
+void imagen2(int matriz[][8][8], int n);
+
+//----------------------------------------
+//Fin de prototipo de las funciones implementadas.
+//----------------------------------------
+
+
+void setup()
+{
+  pinMode(SER, OUTPUT);
+  pinMode(RCLK, OUTPUT);
+  pinMode(SRCLK, OUTPUT);
+  Serial.begin(9600);
+  
+  int matriz[8][8]={};
+     
+     //----------------------------------------
+     //       INICIO DEL PROGRAMA.
+     //----------------------------------------
+     int N;
+     bool band=true;
+
+    
+    Serial.println("-------------------------------------------------");
+    Serial.println("|      BIENVENIDO AL GRAFICADOR DE LEDS 8X8     |");
+
+         while(band){
+
+         Serial.println("-------------------------------------------------");
+         Serial.println("|                    MENU.                       |");
+         Serial.println("-------------------------------------------------");
+           
+         Serial.println("1. Verificar funcionamiento de leds. ");
+         Serial.println("2. Ingresar un patron para mostrarlo en la matriz. ");
+         Serial.println("3. Ingresar varios patrones para ser mostrado en distintos intervalos de tiempo que debe ingresar. ");
+         Serial.println("4. Salir del programa. ");
+
+
+         Serial.println("Ingresa una opcion: ");
+         
+         while(Serial.available()==0){}
+         N=Serial.parseInt();
+
+         switch (N) {
+
+         case 1:
+             Serial.println("-----------------------------------------------------");
+             Serial.println( "       VERIFICACION DE LA MATRIZ DE LEDS.");
+             Serial.println( "-----------------------------------------------------");
+             
+             //encenderM();
+             verificacion();
+             delay(10000);
+             apagar();
+             
+             break;
+         case 2:
+             Serial.println( "-----------------------------------------------------");
+             Serial.println( "INGRESA TU PATRON PARA MOSTRARLO EN LA MATRIZ DE LEDS.");
+             Serial.println( "-----------------------------------------------------");
+             
+           
+             ingresardatos(matriz);
+             imagen1(matriz);
+             delay(10000);
+             apagar();
+
+
+             break;
+         case 3:
+             Serial.println( "--------------------------------------------------------------");
+             Serial.println( "INGRESA LOS PATRONES QUE DESEES Y EL INTERVALO PARA MOSTRARLOS");
+             Serial.println( "--------------------------------------------------------------");
+
+             publik();
+
+
+             break;
+
+         case 4:
+             Serial.println( "-------------------------------------------------");
+             Serial.println( "       GRACIAS POR USAR NUESTRO SERVICIO.");
+             Serial.println( "-------------------------------------------------");
+
+
+             band =false;
+             break;
+         default:
+             Serial.println( "-------------------------------------------------");
+             Serial.println( "                 DATOS INVALIDOS");
+             Serial.println( "-------------------------------------------------");
+
+
+
+     }
+     }
+  
+     //----------------------------------------
+     // FIN DEL PROGRAMA.
+     //----------------------------------------
+}
+
+void loop()
+{    
+}
+
+//----------------------------------------
+//Definicion de las funciones del programa.
+//----------------------------------------
+
+//Funcio que una vez se le ingrese una arreglo 8x8 vacío, pide datos
+void ingresardatos(int matriz[8][8]){
+
+
+  bool band=true;
+  Serial.println("Ingrese cada fila de su patron, donde un 0 es un led apagado, y un 1 es un led prendido, ingrese un Byte representando una fila.");  
+  
+  
+  unsigned long int byte;
+  int bit, A=1, k=0;
+
+  while(band){
+
+
+    
+    Serial.print(A);
+    Serial.println(". Ingrese un Byte: ");
+    while(Serial.available()==0){}
+    byte=Serial.parseInt();
+    Serial.println(byte);
+    
+    Serial.println("");
+
+    for (int i=7; i>=0 ;i--){
+           bit=byte%10;
+
+
+
+             matriz[k][i]=bit;
+             byte/=10;
+
+
+           }
+
+    if(A==8){
+    band=false;
+    }
+    A++;
+    k++;
+
+  }
+
+
+}
+void ingresardatos2(int matriz[][8][8], int n){
+
+
+  bool band=true;
+  Serial.println("Ingrese cada fila de su patron, donde un 0 es un led apagado, y un 1 es un led prendido, ingrese un Byte representando una fila.");  
+
+  unsigned long int byte;
+  int bit, A=1, k=0;
+
+  while(band){
+
+
+    Serial.print(A);
+    Serial.println(". Ingrese un Byte: ");
+    while(Serial.available()==0){}
+    byte=Serial.parseInt();
+    Serial.println(byte);
+      
+    
+    Serial.println("");
+
+    for (int i=7; i>=0 ;i--){
+           bit=byte%10;
+
+
+             matriz[n][k][i]=bit;
+             byte/=10;
+
+
+           }
+
+    if(A==8){
+    band=false;
+    }
+    A++;
+    k++;
+
+  }
+
+
+}
+void publik(void){
+
+  unsigned int N, n;
+
+  Serial.print("Ingrese el numero de patrones: ");
+  while(Serial.available()==0){}
+  N=Serial.parseInt();
+  Serial.println(N);
+  
+  Serial.print("Ingrese el tiempo en (segundos) entre un patron y otro: ");
+  while(Serial.available()==0){}
+  n=Serial.parseInt();
+  Serial.println(n);
+
+    int publik[N][8][8]={};
+
+    for(int i=0; i<N; i++){
+      Serial.print("Patron: ");
+      Serial.println(i+1);
+
+          ingresardatos2(publik, i);
+
+
+    }
+  for (int j=0; j<N; j++){
+        
+        imagen2(publik, j);
+        //apagar();
+        delay(n*1000);
+    }
+   apagar();
+  
+      
+   Serial.println("Desea imprimir los patrones indefinidamente hasta ingresar el caracter X");
+   Serial.println("Ingrese Y, para SI, cualquier otro caracter para NO");
+  
+   char letra;
+   int  bit2=0;
+   char band;
+  
+   while(Serial.available()==0){}
+   letra=Serial.read();
+   if(letra=='Y'){
+    Serial.println("Imprimiendo patrones...");
+   Serial.println("Ingrese X, para dejar de mostrar patrones.");
+   
+    while(band!='X'){
+        band=Serial.read();
+       
+      
+      for (int k=0; k<N &&  band!='X'; k++){
+        band=Serial.read();
+        imagen2(publik, k);
+        
+        delay(n*1000);
+
+     }
+       
+      
+      
+       
+     }
+   
+    }
+  else{
+  
+  Serial.println("Entrando al menu...");
+  Serial.println("");
+  
+  }
+ 
+   apagar();
+   
+}
+  
+void apagar(void){
+  
+ int tamanio=8;
+
+  for (int i=0;i<tamanio;i++){//filas
+    for (int j=0;j<tamanio;j++){//columnas
+      digitalWrite( SER, 0);
+
+      digitalWrite( SRCLK, 0);
+      digitalWrite( SRCLK, 1);
+      digitalWrite( SRCLK, 0);
+      
+      
+
+    }
+  }
+      
+  digitalWrite( RCLK, 0);
+  digitalWrite( RCLK, 1);
+  digitalWrite( RCLK, 0);
+      
+  Serial.println("leds-Off");
+  Serial.println("");
+  
+}
+
+void verificacion(void){
+  int tamanio=8;
+  for (int i=0;i<tamanio;i++){//filas
+    for (int j=0;j<tamanio;j++){//columnas
+      digitalWrite( SER, 1);
+
+      digitalWrite( SRCLK, 0);
+      digitalWrite( SRCLK, 1);
+      digitalWrite( SRCLK, 0);
+      
+      
+    }
+  }
+      digitalWrite( RCLK, 0);
+      digitalWrite( RCLK, 1);
+      digitalWrite( RCLK, 0);
+  
+   
+
+  Serial.println("Pruebas finalizadas: Leds encendidos");
+  Serial.println("");
+}
+
+void imagen1(int matriz[8][8]){
+  int tamanio=8;
+  int bit=0;
+  unsigned long int byte=0;
+  for (int i=0;i<tamanio;i++){//filas
+    
+    for (int j=0;j<tamanio;j++){//columnas
+     bit=matriz[i][j];
+      if (bit == 1){
+
+        digitalWrite( SER, 1);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+        
+        
+
+      }
+      else if(bit==0){
+        digitalWrite( SER, 0);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+        
+
+      }
+	
+    }
+        
+
+  }
+  Serial.println("Imprimiendo patrones...");
+  digitalWrite( RCLK, 0);
+  digitalWrite( RCLK, 1);
+  digitalWrite( RCLK, 0);
+  Serial.println("");
+
+ 
+
+}
+void imagen2(int matriz[][8][8], int n){
+  int tamanio=8;
+  int bit=0;
+  unsigned long int byte=0;
+  for (int i=0;i<tamanio;i++){//filas
+    
+    for (int j=0;j<tamanio;j++){//columnas
+     bit=matriz[n][i][j];
+      if (bit == 1){
+
+        digitalWrite( SER, 1);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+        
+        
+
+      }
+      else if(bit==0){
+        digitalWrite( SER, 0);
+
+        digitalWrite( SRCLK, 0);
+        digitalWrite( SRCLK, 1);
+        digitalWrite( SRCLK, 0);
+        
+        
+
+      }
+	
+    }
+        
+  }
+  
+  Serial.println("Imprimiendo patrones...");
+  digitalWrite( RCLK, 0);
+  digitalWrite( RCLK, 1);
+  digitalWrite( RCLK, 0);
+  Serial.println("");
+
+}
+
+//----------------------------------------
+//Definicion de las funciones del programa.
+//----------------------------------------
